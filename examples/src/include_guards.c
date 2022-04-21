@@ -1,22 +1,27 @@
-#include "include_guards1.h"
-#include "include_guards1.h"
+#include "include_guards1.h" 
+#include "include_guards1.h" 
 
-void print_argv(int argc, const char *argv[]){
+void print_args(int argc, const char *argv[]) {
   printf("Number of args: #%i\n", argc);
-  int i = 0;
-  for (i = 0; i < argc; i++)
-  {
+  int i;
+  for(i=0; i<argc; i++){
     printf("Args #%i is: %s\n", i, argv[i]);
   }
 }
 
-int main(int argc, const char *argv[]){
- 
-  print_argv(argc, argv);
+int main(int argc, const char *argv[]) {
 
-  if(argc == 0){
-    printf("I don't have enough argumnets!\n");
+  print_args(argc, argv);
+
+  if(argc == 1) {
+    printf("I don't have enough arguments!\n");
     return 0;
   }
 
   double a = atof(argv[1]);
+
+  printf("Symbol test is: %s\n", TEST);
+  printf("Test TWICE(%f): %f\n", a, TWICE(a));
+
+  return 0;
+}

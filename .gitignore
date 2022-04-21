@@ -1,10 +1,12 @@
 *.o
 *.a
 *.slxc
+/*.csv
 slprj/
 /examples/*
 !/examples/*.md
 !/examples/src
+!/examples/include
 /*build*
 /src/defines.h
 Dockerfile
@@ -15,3 +17,4 @@ Dockerfile
 
 /products*/*
 !/products*/.gitkeep
+*.dSYM
