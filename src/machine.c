@@ -57,7 +57,7 @@ machine_t *machine_new(const char *ini_path) {
     rc += ini_get_double(ini, "C-CNC", "offset_z", &z);
     m->offset = point_new();
     point_set_xyz(m->offset, x, y, z);
-    free(ini);
+    ini_free(ini);
     if (rc > 0) {
       fprintf(stderr, "Missing/wrong %d config parameters\n", rc);
       return NULL;
@@ -86,12 +86,12 @@ void machine_free(machine_t *m) {
 
 // ACCESSORS ===================================================================
 
-data_t machine_A(const machine_t *m) { assert(m); return m->A; }
+#define machine_getter(typ, par) \
+typ machine_##par(const machine_t *m) { assert(m); return m->par; }
 
-data_t machine_tq(const machine_t *m) { assert(m); return m->tq; }
+machine_getter(data_t, A);
+machine_getter(data_t, tq);
+machine_getter(data_t, error);
+machine_getter(point_t *, zero);
+machine_getter(point_t *, offset);
 
-point_t *machine_zero(const machine_t *m) { assert(m); return m->zero; }
-
-point_t *machine_offset(const machine_t *m) { assert(m); return m->offset; }
-
-data_t machine_error(const machine_t *m) { assert(m); return m->error; }
